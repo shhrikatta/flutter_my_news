@@ -16,7 +16,7 @@ class NewsApiProvider {
     return ids;
   }
 
-  fetchNewsStories(int id) async {
+  Future<NewsModel> fetchNewsStories(int id) async {
     final Uri uri = Uri.parse('$_baseUrl/item/$id.json');
     var res = await client.get(uri);
 
