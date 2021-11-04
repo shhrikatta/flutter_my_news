@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:flutter_my_news/models/news_model.dart';
+import 'package:flutter_my_news/src/models/news_model.dart';
 import 'package:http/http.dart' show Client;
 
 const _baseUrl = 'https://hacker-news.firebaseio.com/v0';
