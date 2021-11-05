@@ -6,8 +6,8 @@ class NewsRepository {
   final NewsApiProvider _newsApiProvider = NewsApiProvider();
   final NewsDbProvider _newsDbProvider = NewsDbProvider();
 
-  getTopIds() {
-    return _newsApiProvider.fetchTopIds();
+  Future<List<int>> getTopIds() async {
+    return await _newsApiProvider.fetchTopIds();
   }
 
   Future<NewsModel> getNewsItem(int id) async {

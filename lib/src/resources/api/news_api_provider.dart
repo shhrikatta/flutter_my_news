@@ -10,10 +10,10 @@ class NewsApiProvider {
 
   Future<List<int>> fetchTopIds() async {
     final Uri uri = Uri.parse('$_baseUrl/topstories.json');
-    var res = await client.get(uri);
+    final res = await client.get(uri);
     final ids = jsonDecode(res.body);
 
-    return ids;
+    return ids.cast<int>();
   }
 
   Future<NewsModel> fetchNewsStories(int id) async {
