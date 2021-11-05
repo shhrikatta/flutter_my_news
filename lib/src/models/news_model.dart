@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class NewsModel {
   late final int id; // The item's unique id.
   late final bool? deleted; // true if the item is deleted.
@@ -31,5 +33,39 @@ class NewsModel {
     score = parsedJson['score'];
     title = parsedJson['title'];
     descendants = parsedJson['descendants'];
+  }
+
+  NewsModel.fromDb(Map<String, dynamic> parsedJson) {
+    id = parsedJson['id'];
+    deleted = parsedJson['deleted'] == 1;
+    type = parsedJson['type'];
+    by = parsedJson['by'];
+    time = parsedJson['time'];
+    text = parsedJson['text'];
+    dead = parsedJson['dead'] == 1;
+    parent = parsedJson['parent'];
+    kids = jsonDecode(parsedJson['kids']);
+    url = parsedJson['url'];
+    score = parsedJson['score'];
+    title = parsedJson['title'];
+    descendants = parsedJson['descendants'];
+  }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'by': by,
+      'deleted': deleted == true ? 1 : 0,
+      'text': text,
+      'dead': dead == true ? 1 : 0,
+      'parent': parent,
+      'descendants': descendants,
+      'id': id,
+      'kids': jsonEncode(kids),
+      'score': score,
+      'time': time,
+      'title': title,
+      'type': type,
+      'url': url,
+    };
   }
 }
