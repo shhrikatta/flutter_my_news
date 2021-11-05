@@ -1,29 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_my_news/src/blocs/news_bloc.dart';
+import 'package:flutter_my_news/src/providers/news_provider.dart';
 
 class NewsList extends StatelessWidget {
   const NewsList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 100,
-      itemBuilder: (context, int index) {
-        return FutureBuilder(
-          future: getFuture(),
-          builder: (context, snapshot) {
-            return snapshot.hasData
-                ? Text('fetched data at $index')
-                : Text('yet to fetch data at $index');
-          },
-        );
-      },
-    );
+    final _newsBloc = NewsProvider.of(context);
+    //BAD implementation
+    _newsBloc.fetchTopIds();
+
+    return buildNewsList(_newsBloc, context);
   }
 
-  getFuture() {
-    return Future.delayed(
-      const Duration(seconds: 2),
-      () => 'hi',
+  Widget buildNewsList(NewsBloc newsBloc, BuildContext context) {
+    return StreamBuilder(
+      stream: newsBloc.topIds,
+      builder: (context, AsyncSnapshot<List<int>> snapshot) {
+        if (!snapshot.hasData || snapshot.data == null) {
+          return const CircularProgressIndicator();
+        } else {
+          return ListView.builder(
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, int index) {
+              return Text('${snapshot.data![index]}');
+            },
+          );
+        }
+      },
     );
   }
 }

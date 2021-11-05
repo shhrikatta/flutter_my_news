@@ -12,7 +12,8 @@ class NewsProvider extends InheritedWidget {
   bool updateShouldNotify(_) => true;
 
   static NewsBloc of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType() as NewsProvider)
+    return (context.dependOnInheritedWidgetOfExactType<NewsProvider>()
+            as NewsProvider)
         .newsBloc;
   }
 }

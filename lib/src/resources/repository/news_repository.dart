@@ -9,7 +9,7 @@ class NewsRepository {
   List<Cache> caches = [newsDbProvider];
 
   Future<List<int>?> getTopIds() async {
-    return await sources[1].fetchTopIds();
+    return await sources.first.fetchTopIds();
   }
 
   Future<NewsModel?> getNewsItem(int id) async {
