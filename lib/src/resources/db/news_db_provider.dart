@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:flutter_my_news/src/contract/cache.dart';
+import 'package:flutter_my_news/src/contract/source.dart';
 import 'package:flutter_my_news/src/models/news_model.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -7,8 +9,12 @@ import 'package:sqflite/sqflite.dart';
 const tableName = 'NEWS';
 const newsId = 'newsId';
 
-class NewsDbProvider {
+class NewsDbProvider implements Cache, Source {
   late Database db;
+
+  NewsDbProvider() {
+    init();
+  }
 
   init() async {
     Directory documentDirectory = await getApplicationDocumentsDirectory();
@@ -51,7 +57,16 @@ class NewsDbProvider {
     return null;
   }
 
+  @override
   addNewsItem(NewsModel news) {
     db.insert(tableName, news.toMap());
   }
+
+  @override
+  Future<NewsModel>? fetchNewsStories(int id) => null;
+
+  @override
+  Future<List<int>>? fetchTopIds() => null;
 }
+
+final NewsDbProvider newsDbProvider = NewsDbProvider();
