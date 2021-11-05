@@ -8,7 +8,7 @@ const _baseUrl = 'https://hacker-news.firebaseio.com/v0';
 class NewsApiProvider {
   Client client = Client();
 
-  fetchTopIds() async {
+  Future<List<int>> fetchTopIds() async {
     final Uri uri = Uri.parse('$_baseUrl/topstories.json');
     var res = await client.get(uri);
     final ids = jsonDecode(res.body);

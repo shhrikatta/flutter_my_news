@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter_my_news/src/models/news_model.dart';
-import 'package:flutter_my_news/src/resources/news_api_provider.dart';
+import 'package:flutter_my_news/src/resources/api/news_api_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart';
 import 'package:http/testing.dart';
