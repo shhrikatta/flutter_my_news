@@ -8,7 +8,7 @@ class NewsRepository {
   List<Source> sources = [NewsApiProvider(), newsDbProvider];
   List<Cache> caches = [newsDbProvider];
 
-  Future<List<int>?> getTopIds() async {
+  Future<List<int>?>? getTopIds() async {
     return await sources.first.fetchTopIds();
   }
 

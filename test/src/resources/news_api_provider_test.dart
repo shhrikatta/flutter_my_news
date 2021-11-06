@@ -72,8 +72,8 @@ void main() {
       return Response(jsonEncode(jsonReq), 200);
     });
 
-    final NewsModel res = await newsApi.fetchNewsStories(8863);
+    final NewsModel? res = await newsApi.fetchNewsStories(8863);
 
-    expect(res.id, 8863);
+    expect(res?.id, 8863);
   });
 }

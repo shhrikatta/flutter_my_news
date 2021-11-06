@@ -32,7 +32,7 @@ class NewsModel {
     url = parsedJson['url'];
     score = parsedJson['score'];
     title = parsedJson['title'];
-    descendants = parsedJson['descendants'];
+    descendants = parsedJson['descendants'] ?? 0;
   }
 
   NewsModel.fromDb(Map<String, dynamic> parsedJson) {
