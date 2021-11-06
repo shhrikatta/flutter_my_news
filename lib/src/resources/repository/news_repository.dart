@@ -25,7 +25,9 @@ class NewsRepository {
     }
 
     for (var cache in caches) {
-      cache.addNewsItem(newsItem!);
+      if (newsItem != null) {
+        cache.addNewsItem(newsItem);
+      }
     }
 
     return newsItem;
