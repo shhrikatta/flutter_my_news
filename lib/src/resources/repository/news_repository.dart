@@ -15,7 +15,7 @@ class NewsRepository {
   Future<NewsModel?> getNewsItem(int id) async {
     // checking if a news item is already fetched earlier
     late NewsModel? newsItem;
-    Source source;
+    var source;
 
     for (source in sources) {
       newsItem = await source.fetchNewsStories(id);
@@ -25,8 +25,8 @@ class NewsRepository {
     }
 
     for (var cache in caches) {
-      if (newsItem != null) {
-        cache.addNewsItem(newsItem);
+      if (cache != source) {
+        cache.addNewsItem(newsItem!);
       }
     }
 

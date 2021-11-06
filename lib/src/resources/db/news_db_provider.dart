@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 const tableName = 'NEWS';
-const newsId = 'newsId';
+const newsId = 'id';
 
 class NewsDbProvider implements Cache, Source {
   late Database db;
@@ -59,7 +59,8 @@ class NewsDbProvider implements Cache, Source {
 
   @override
   addNewsItem(NewsModel news) {
-    db.insert(tableName, news.toMap());
+    db.insert(tableName, news.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.ignore);
   }
 
   @override

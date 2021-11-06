@@ -15,20 +15,20 @@ class NewsModel {
       kids; // The ids of the item's comments, in ranked display order.
   late final String? url; // The URL of the story.
   late final int? score; // The story's score, or the votes for a pollopt.
-  late final String? title; // The title of the story, poll or job. HTML.
+  late final String title; // The title of the story, poll or job. HTML.
   late final int?
       descendants; // In the case of stories or polls, the total comment count.
 
   NewsModel.fromJson(Map<String, dynamic> parsedJson) {
     id = parsedJson['id'];
-    deleted = parsedJson['deleted'];
+    deleted = parsedJson['deleted'] ?? false;
     type = parsedJson['type'];
     by = parsedJson['by'];
     time = parsedJson['time'];
-    text = parsedJson['text'];
-    dead = parsedJson['dead'];
-    parent = parsedJson['parent'];
-    kids = parsedJson['kids'];
+    text = parsedJson['text'] ?? '';
+    dead = parsedJson['dead'] ?? false;
+    parent = parsedJson['parent'] ?? '';
+    kids = parsedJson['kids'] ?? [];
     url = parsedJson['url'];
     score = parsedJson['score'];
     title = parsedJson['title'];
