@@ -23,6 +23,10 @@ class NewsBloc {
     }
   }
 
+  clearCache() {
+    return _newsRepo.clearCache();
+  }
+
   itemsTransformer() {
     return ScanStreamTransformer(
         (Map<int, Future<NewsModel?>> cache, int id, index) {

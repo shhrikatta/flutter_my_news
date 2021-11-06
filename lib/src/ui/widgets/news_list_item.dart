@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_news/src/models/news_model.dart';
 import 'package:flutter_my_news/src/providers/news_provider.dart';
-import 'package:flutter_my_news/src/ui/screens/loading_container.dart';
+import 'package:flutter_my_news/src/ui/widgets/loading_container.dart';
 
 class NewsListItem extends StatelessWidget {
   final int itemId;

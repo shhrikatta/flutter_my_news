@@ -32,4 +32,8 @@ class NewsRepository {
 
     return newsItem;
   }
+
+  clearCache() async {
+    await caches.first.clear();
+  }
 }

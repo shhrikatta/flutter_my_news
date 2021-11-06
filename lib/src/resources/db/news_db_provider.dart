@@ -59,8 +59,13 @@ class NewsDbProvider implements Cache, Source {
 
   @override
   addNewsItem(NewsModel news) {
-    db.insert(tableName, news.toMap(),
+    return db.insert(tableName, news.toMap(),
         conflictAlgorithm: ConflictAlgorithm.ignore);
+  }
+
+  @override
+  Future<int> clear() {
+    return db.delete(tableName);
   }
 
   @override

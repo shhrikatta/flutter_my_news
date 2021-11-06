@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_my_news/src/blocs/news_bloc.dart';
 import 'package:flutter_my_news/src/providers/news_provider.dart';
 import 'package:flutter_my_news/src/ui/widgets/news_list_item.dart';
+import 'package:flutter_my_news/src/ui/widgets/refresh.dart';
 
 class NewsList extends StatelessWidget {
   const NewsList({Key? key}) : super(key: key);
@@ -22,12 +23,16 @@ class NewsList extends StatelessWidget {
         if (!snapshot.hasData || snapshot.data == null) {
           return const CircularProgressIndicator();
         } else {
-          return ListView.builder(
-            itemCount: snapshot.data?.length,
-            itemBuilder: (context, int index) {
-              newsBloc.fetchItem(snapshot.data![index]);
-              return NewsListItem(itemId: snapshot.data![index]);
-            },
+          return Refresh(
+            child: ListView.builder(
+              itemCount: snapshot.data?.length,
+              itemBuilder: (context, int index) {
+                newsBloc.fetchItem(snapshot.data![index]);
+                return NewsListItem(
+                  itemId: snapshot.data![index],
+                );
+              },
+            ),
           );
         }
       },
