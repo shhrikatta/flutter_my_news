@@ -5,7 +5,7 @@ class NewsModel {
   late final bool deleted; // true if the item is deleted.
   late final String?
       type; // The type of item. One of "job", "story", "comment", "poll", or "pollopt".
-  late final String? by; // The username of the item's author.
+  late final String by; // The username of the item's author.
   late final int? time; // Creation date of the item, in Unix Time.
   late final String? text; // The comment, story or poll text. HTML.
   late final bool dead; // true if the item is dead.

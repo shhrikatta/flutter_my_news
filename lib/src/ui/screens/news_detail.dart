@@ -68,7 +68,10 @@ class NewsDetail extends StatelessWidget {
               itemMap: itemMap,
             ))
         .toList();
-    children.addAll(commentsList!);
+
+    if (commentsList != null) {
+      children.addAll(commentsList);
+    }
 
     return ListView(
       children: children,

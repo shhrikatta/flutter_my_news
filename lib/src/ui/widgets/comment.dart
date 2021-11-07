@@ -4,8 +4,14 @@ import 'package:flutter_my_news/src/models/news_model.dart';
 class Comment extends StatelessWidget {
   final int itemId;
   final Map<int, Future<NewsModel>>? itemMap;
+  // final int depth;
 
-  const Comment({Key? key, required this.itemId, required this.itemMap})
+  const Comment(
+      {Key? key,
+      required this.itemId,
+      required this.itemMap,
+      // required this.depth,
+      )
       : super(key: key);
 
   @override
@@ -14,7 +20,27 @@ class Comment extends StatelessWidget {
         future: itemMap?[itemId],
         builder: (context, AsyncSnapshot<NewsModel> snapshot) {
           if (snapshot.hasData) {
-            return Text('${snapshot.data?.text}');
+            final children = <Widget>[
+              ListTile(
+                title: Text('${snapshot.data?.text}'),
+                subtitle: Text('${snapshot.data?.by}'),
+              ),
+              const Divider(),
+            ];
+            final listKids = snapshot.data?.kids ?? [];
+
+            for (var kid in listKids) {
+              children.add(
+                Comment(
+                  itemId: kid,
+                  itemMap: itemMap,
+                ),
+              );
+            }
+
+            return Column(
+              children: children,
+            );
           }
 
           return const Text('Loading...');
