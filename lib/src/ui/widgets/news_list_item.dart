@@ -24,7 +24,7 @@ class NewsListItem extends StatelessWidget {
           future: snapshot.data?[itemId],
           builder: (context, AsyncSnapshot<NewsModel?> itemSnapshot) {
             if (itemSnapshot.hasData) {
-              return buildNewsTile(itemSnapshot.data);
+              return buildNewsTile(context, itemSnapshot.data);
             }
 
             return const LoadingContainer();
@@ -34,10 +34,13 @@ class NewsListItem extends StatelessWidget {
     );
   }
 
-  Widget buildNewsTile(NewsModel? data) {
+  Widget buildNewsTile(BuildContext context, NewsModel? data) {
     return Column(
       children: [
         ListTile(
+          onTap: () {
+            Navigator.pushNamed(context, '/${data?.id}');
+          },
           title: Text(data!.title),
           subtitle: Text('${data.score} points'),
           trailing: Column(

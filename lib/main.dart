@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_news/src/providers/news_provider.dart';
+import 'package:flutter_my_news/src/ui/screens/news_detail.dart';
 import 'package:flutter_my_news/src/ui/screens/news_list.dart';
 
 void main() {
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
     return NewsProvider(
       child: MaterialApp(
         title: 'N.E.W.S',
+        onGenerateRoute: (RouteSettings routeSettings) {
+          return routes(routeSettings);
+        },
         theme: ThemeData(
           // This is the theme of your application.
           //
@@ -39,5 +43,22 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Route routes(RouteSettings routeSettings) {
+    if (routeSettings.name == '/') {
+      return MaterialPageRoute(
+        builder: (context) {
+          return const NewsList();
+        },
+      );
+    } else {
+      return MaterialPageRoute(
+        builder: (context) {
+          final itemId = int.parse(routeSettings.name!.replaceFirst('/', ''));
+          return NewsDetail(itemId: itemId);
+        },
+      );
+    }
   }
 }
