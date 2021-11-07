@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_news/src/models/news_model.dart';
+import 'package:flutter_my_news/src/ui/widgets/loading_container.dart';
 
 class Comment extends StatelessWidget {
   final int itemId;
@@ -47,7 +48,7 @@ class Comment extends StatelessWidget {
             );
           }
 
-          return const Text('Loading...');
+          return const LoadingContainer();
         });
   }
 }
