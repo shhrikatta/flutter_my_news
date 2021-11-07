@@ -10,7 +10,7 @@ class CommentsBloc {
   final _commentsOutput = BehaviorSubject<Map<int, Future<NewsModel>>>();
 
   // Streams
-  Stream<Map<int, Future<NewsModel>>> get _streamComments =>
+  Stream<Map<int, Future<NewsModel>>> get streamComments =>
       _commentsOutput.stream;
 
   // Sink
