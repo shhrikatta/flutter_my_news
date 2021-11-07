@@ -11,8 +11,8 @@ class NewsBloc {
   Stream<List<int>> get topIds => _topIds.stream;
 
   // items stream controller
-  final _items = BehaviorSubject<Map<int, Future<NewsModel?>>>();
-  Stream<Map<int, Future<NewsModel?>>> get items => _items.stream;
+  final _items = BehaviorSubject<Map<int, Future<NewsModel>>>();
+  Stream<Map<int, Future<NewsModel>>> get items => _items.stream;
   final _itemsFetcher = PublishSubject<int>();
   Function(int) get fetchItem => _itemsFetcher.sink.add;
 
@@ -29,7 +29,7 @@ class NewsBloc {
 
   itemsTransformer() {
     return ScanStreamTransformer(
-        (Map<int, Future<NewsModel?>> cache, int id, index) {
+        (Map<int, Future<NewsModel>> cache, int id, index) {
       cache[id] = _newsRepo.getNewsItem(id);
       return cache;
     }, <int, Future<NewsModel>>{});

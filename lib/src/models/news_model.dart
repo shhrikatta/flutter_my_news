@@ -2,16 +2,16 @@ import 'dart:convert';
 
 class NewsModel {
   late final int id; // The item's unique id.
-  late final bool? deleted; // true if the item is deleted.
+  late final bool deleted; // true if the item is deleted.
   late final String?
       type; // The type of item. One of "job", "story", "comment", "poll", or "pollopt".
   late final String? by; // The username of the item's author.
   late final int? time; // Creation date of the item, in Unix Time.
   late final String? text; // The comment, story or poll text. HTML.
-  late final bool? dead; // true if the item is dead.
-  late final String?
+  late final bool dead; // true if the item is dead.
+  late final String
       parent; // The comment's parent: either another comment or the relevant story.
-  late final List<dynamic>?
+  late final List<dynamic>
       kids; // The ids of the item's comments, in ranked display order.
   late final String? url; // The URL of the story.
   late final int? score; // The story's score, or the votes for a pollopt.
@@ -22,16 +22,16 @@ class NewsModel {
   NewsModel.fromJson(Map<String, dynamic> parsedJson) {
     id = parsedJson['id'];
     deleted = parsedJson['deleted'] ?? false;
-    type = parsedJson['type'];
-    by = parsedJson['by'];
+    type = parsedJson['type'] ?? '';
+    by = parsedJson['by'] ?? '';
     time = parsedJson['time'];
     text = parsedJson['text'] ?? '';
     dead = parsedJson['dead'] ?? false;
-    parent = parsedJson['parent'] ?? '';
+    parent = parsedJson['parent'].toString();
     kids = parsedJson['kids'] ?? [];
-    url = parsedJson['url'];
-    score = parsedJson['score'];
-    title = parsedJson['title'];
+    url = parsedJson['url'] ?? '';
+    score = parsedJson['score'] ?? 0;
+    title = parsedJson['title'] ?? '';
     descendants = parsedJson['descendants'] ?? 0;
   }
 
