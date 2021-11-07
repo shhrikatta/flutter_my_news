@@ -10,8 +10,6 @@ class NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _newsBloc = NewsProvider.of(context);
-    //BAD implementation
-    _newsBloc.fetchTopIds();
 
     return buildNewsList(_newsBloc, context);
   }

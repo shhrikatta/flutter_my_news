@@ -52,6 +52,10 @@ class MyApp extends StatelessWidget {
     if (routeSettings.name == '/') {
       return MaterialPageRoute(
         builder: (context) {
+          // call top news ids api before loading of new list ui
+          final _newsBloc = NewsProvider.of(context);
+          _newsBloc.fetchTopIds();
+
           return const NewsList();
         },
       );
